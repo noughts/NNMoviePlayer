@@ -26,13 +26,16 @@
 	[super awakeFromNib];
 	_kvoController = [FBKVOController controllerWithObserver:self];
 	_notificationController = [FTGNotificationController controllerWithObserver:self];
+	_player = [[AVPlayer alloc] init];
+	[(AVPlayerLayer*)self.layer setPlayer:_player];
 }
 
 
 
 -(void)playWithURL:(NSURL*)url{
-	_player = [[AVPlayer alloc]initWithURL:url];
-	[(AVPlayerLayer*)self.layer setPlayer:_player];
+	AVPlayerItem* item = [[AVPlayerItem alloc] initWithURL:url];
+	[_player replaceCurrentItemWithPlayerItem:item];
+	
 	
 	[_kvoController unobserveAll];
 	[_kvoController observe:_player keyPath:@"status" options:NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
