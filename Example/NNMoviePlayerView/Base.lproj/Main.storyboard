@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ebM-vd-Pb3" customClass="NNMoviePlayerView">
+                                <rect key="frame" x="10" y="134" width="300" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="OZp-h3-j2v"/>
+                                    <constraint firstAttribute="width" constant="300" id="isd-Gg-KVf"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ykl-LE-QWL">
+                                <rect key="frame" x="20" y="442" width="71" height="30"/>
+                                <state key="normal" title="Play Local">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onPlayLocalMovieButtonTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kZu-Br-rAf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeB-Sb-8DO">
+                                <rect key="frame" x="213" y="442" width="87" height="30"/>
+                                <state key="normal" title="Play Remote">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onPlayRemoveMovieButtonTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4ip-Fb-WyG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1M-rq-IvV">
+                                <rect key="frame" x="136" y="530" width="48" height="30"/>
+                                <state key="normal" title="Replay">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onReplayButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="FWL-O9-LbU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="ebM-vd-Pb3" secondAttribute="centerX" id="DWM-IH-qai"/>
+                            <constraint firstItem="AeB-Sb-8DO" firstAttribute="top" secondItem="ebM-vd-Pb3" secondAttribute="bottom" constant="8" symbolic="YES" id="XbB-KV-UYS"/>
+                            <constraint firstAttribute="trailing" secondItem="AeB-Sb-8DO" secondAttribute="trailing" constant="20" symbolic="YES" id="YLO-xJ-bKv"/>
+                            <constraint firstItem="Ykl-LE-QWL" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="Zdu-EE-fTm"/>
+                            <constraint firstItem="Ykl-LE-QWL" firstAttribute="top" secondItem="ebM-vd-Pb3" secondAttribute="bottom" constant="8" symbolic="YES" id="axU-lq-xDa"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="H1M-rq-IvV" secondAttribute="bottom" constant="8" symbolic="YES" id="p9v-Mu-0S2"/>
+                            <constraint firstAttribute="centerY" secondItem="ebM-vd-Pb3" secondAttribute="centerY" id="rxT-XG-c7R"/>
+                            <constraint firstAttribute="centerX" secondItem="H1M-rq-IvV" secondAttribute="centerX" id="zqA-Xp-kWb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="_player_view" destination="ebM-vd-Pb3" id="cYV-lS-bVh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

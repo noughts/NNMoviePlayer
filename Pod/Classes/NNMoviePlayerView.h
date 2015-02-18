@@ -10,4 +10,7 @@
 
 @interface NNMoviePlayerView : UIView
 
+-(void)playWithURL:(NSURL*)url;
+-(void)replay;
+
 @end

@@ -7,18 +7,35 @@
 //
 
 #import "ViewController.h"
+#import <NNMoviePlayerView.h>
 
-@interface ViewController ()
+@implementation ViewController{
+	__weak IBOutlet NNMoviePlayerView* _player_view;
+}
 
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
+
+
+
+
+-(IBAction)onPlayRemoveMovieButtonTap:(id)sender{
+	NSURL* url = [NSURL URLWithString:@"http://casio.jp/file/dc/CIMG1226.mov"];
+	[_player_view playWithURL:url];
+}
+
+-(IBAction)onPlayLocalMovieButtonTap:(id)sender{
+	NSURL* url = [[NSBundle mainBundle] URLForResource:@"IMG_0451" withExtension:@"MOV"];
+	[_player_view playWithURL:url];
+}
+
+
+-(IBAction)onReplayButton:(id)sender{
+	[_player_view replay];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
