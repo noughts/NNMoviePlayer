@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D5B972FB7B46170F791C308 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC74F512D826AE8F91AFC78F /* libPods-Tests.a */; };
-		4D5FA6A71A942B7200C4756F /* sample_iTunes.mov in Resources */ = {isa = PBXBuildFile; fileRef = 4D5FA6A61A942B7200C4756F /* sample_iTunes.mov */; };
+		4D5FA6AA1A942D7F00C4756F /* sample_mpeg4.mov in Resources */ = {isa = PBXBuildFile; fileRef = 4D5FA6A91A942D7F00C4756F /* sample_mpeg4.mov */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -41,7 +41,7 @@
 		3DE1B5FEBF081F6EF02F23F1 /* Pods-NNMoviePlayerView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NNMoviePlayerView.release.xcconfig"; path = "Pods/Target Support Files/Pods-NNMoviePlayerView/Pods-NNMoviePlayerView.release.xcconfig"; sourceTree = "<group>"; };
 		41D0CF58602D82A55075E76B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		41FCD962B14B0E62819C451F /* Pods-NNMoviePlayerView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NNMoviePlayerView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NNMoviePlayerView/Pods-NNMoviePlayerView.debug.xcconfig"; sourceTree = "<group>"; };
-		4D5FA6A61A942B7200C4756F /* sample_iTunes.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = sample_iTunes.mov; sourceTree = "<group>"; };
+		4D5FA6A91A942D7F00C4756F /* sample_mpeg4.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = sample_mpeg4.mov; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* NNMoviePlayerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NNMoviePlayerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -134,9 +134,9 @@
 			children = (
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F59F195388D20070C39A /* Main.storyboard */,
+				4D5FA6A91A942D7F00C4756F /* sample_mpeg4.mov */,
 				6003F59C195388D20070C39A /* NNAppDelegate.h */,
 				6003F59D195388D20070C39A /* NNAppDelegate.m */,
-				4D5FA6A61A942B7200C4756F /* sample_iTunes.mov */,
 				6003F594195388D20070C39A /* Supporting Files */,
 				6003F5A5195388D20070C39A /* ViewController.h */,
 				6003F5A6195388D20070C39A /* ViewController.m */,
@@ -277,8 +277,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				4D5FA6AA1A942D7F00C4756F /* sample_mpeg4.mov in Resources */,
 				6003F5A1195388D20070C39A /* Main.storyboard in Resources */,
-				4D5FA6A71A942B7200C4756F /* sample_iTunes.mov in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,15 +8,24 @@
 
 #import "NNMoviePlayerView.h"
 @import AVFoundation;
+#import <FTGNotificationController.h>
 
 
 @implementation NNMoviePlayerView{
+	FTGNotificationController* _notificationController;
 	AVPlayer        *_player;
 }
 
 +(Class)layerClass{
 	return [AVPlayerLayer class];
 }
+
+
+-(void)awakeFromNib{
+	[super awakeFromNib];
+	_notificationController = [FTGNotificationController controllerWithObserver:self];
+}
+
 
 
 -(void)playWithURL:(NSURL*)url{
@@ -31,6 +40,10 @@
 			 forKeyPath:@"status"
 				options:NSKeyValueObservingOptionNew
 				context:&_player];
+	
+	[_notificationController observeNotificationName:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem queue:nil block:^(NSNotification *note, id observer) {
+		NSLog( @"再生終了" );
+	}];
 }
 
 
