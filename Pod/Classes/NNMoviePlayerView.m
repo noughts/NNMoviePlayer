@@ -82,5 +82,11 @@
 
 
 
+-(void)pause{
+	[_player pause];
+}
+
+
+
 
 @end

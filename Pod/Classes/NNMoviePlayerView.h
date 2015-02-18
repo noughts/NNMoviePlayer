@@ -18,6 +18,7 @@
 @property(nonatomic,assign) id<NNMoviePlayerViewDelegate> delegate;
 -(void)playWithURL:(NSURL*)url;
 -(void)replay;
+-(void)pause;
 
 @end
 
