@@ -54,9 +54,9 @@
 	
 	
 	[_kvoController unobserveAll];
-	[_kvoController observe:_player keyPath:@"status" options:NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
+	[_kvoController observe:_player keyPath:@"status" options:NSKeyValueObservingOptionNew block:^(id observer, AVPlayer* object, NSDictionary *change) {
 		if( _player.status == AVPlayerItemStatusReadyToPlay){
-			NBULogVerbose( @"再生開始" );
+			NBULogVerbose( @"再生開始 item=%@", object.currentItem );
 			[_player play];
 		} else {
 			NBULogVerbose( @"%@", @(_player.status) );
@@ -65,7 +65,8 @@
 	
 	[_notificationController unobserveAll];
 	[_notificationController observeNotificationName:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem queue:nil block:^(NSNotification *note, id observer) {
-		NBULogVerbose( @"再生終了" );
+		AVPlayerItem* item = note.object;
+		NBULogVerbose( @"再生終了 item=%@", item );
 		if( _autoRepeat ){
 			[self replay];
 		}
