@@ -16,7 +16,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 NNMoviePlayerView is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-    pod "NNMoviePlayerView", :git => "https://github.com/noughts/NNMoviePlayer"
+    pod "NNMoviePlayerView", :git => "https://github.com/noughts/NNMoviePlayerView"
 
 ## Author
 
