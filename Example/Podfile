@@ -3,6 +3,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 target 'NNMoviePlayerView', :exclusive => true do
   pod "NNMoviePlayerView", :path => "../"
   pod "FTGNotificationController"
+  pod "KVOController"
 end
 
 target 'Tests', :exclusive => true do

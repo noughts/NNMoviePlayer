@@ -41,6 +41,8 @@
 				options:NSKeyValueObservingOptionNew
 				context:&_player];
 	
+	
+	
 	[_notificationController observeNotificationName:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem queue:nil block:^(NSNotification *note, id observer) {
 		NSLog( @"再生終了" );
 	}];
