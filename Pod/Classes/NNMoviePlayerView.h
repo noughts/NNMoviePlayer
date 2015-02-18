@@ -14,10 +14,13 @@
 
 @interface NNMoviePlayerView : UIView
 
+/// 自動リピート
 @property BOOL autoRepeat;
 @property(nonatomic,assign) id<NNMoviePlayerViewDelegate> delegate;
 -(void)playWithURL:(NSURL*)url;
 -(void)replay;
+
+/// 一時停止
 -(void)pause;
 
 @end
