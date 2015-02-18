@@ -9,9 +9,10 @@
 #import "NNMoviePlayerView.h"
 @import AVFoundation;
 #import <FTGNotificationController.h>
-
+#import <FBKVOController.h>
 
 @implementation NNMoviePlayerView{
+	FBKVOController* _kvoController;
 	FTGNotificationController* _notificationController;
 	AVPlayer        *_player;
 }
@@ -23,26 +24,26 @@
 
 -(void)awakeFromNib{
 	[super awakeFromNib];
+	_kvoController = [FBKVOController controllerWithObserver:self];
 	_notificationController = [FTGNotificationController controllerWithObserver:self];
 }
 
 
 
 -(void)playWithURL:(NSURL*)url{
-	//プレイヤーを設定
 	_player = [[AVPlayer alloc]initWithURL:url];
-	
-	//*1で説明したAVPlayerとViewとを紐づける処理
 	[(AVPlayerLayer*)self.layer setPlayer:_player];
 	
-	//ステータスの変更を受け取るオブサーバの設定
-	[_player addObserver:self
-			 forKeyPath:@"status"
-				options:NSKeyValueObservingOptionNew
-				context:&_player];
+	[_kvoController unobserveAll];
+	[_kvoController observe:_player keyPath:@"status" options:NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
+		if([_player status] == AVPlayerItemStatusReadyToPlay){
+			NSLog( @"再生開始" );
+			[_player play];
+			return;
+		}
+	}];
 	
-	
-	
+	[_notificationController unobserveAll];
 	[_notificationController observeNotificationName:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem queue:nil block:^(NSNotification *note, id observer) {
 		NSLog( @"再生終了" );
 	}];
@@ -52,23 +53,6 @@
 -(void)replay{
 	[_player seekToTime:kCMTimeZero];
 	[_player play];
-}
-
-
-
-#pragma mark - ステータス変更時に呼ばれるオブサーバ（１）
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-	//再生準備が整い次第、動画を再生させる。
-	if([_player status] == AVPlayerItemStatusReadyToPlay){
-		[_player removeObserver:self forKeyPath:@"status"];
-		[_player play];
-		return;
-	}
-	
-	[super observeValueForKeyPath:keyPath
-						 ofObject:object
-						   change:change
-						  context:context];
 }
 
 
