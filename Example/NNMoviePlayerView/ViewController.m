@@ -27,7 +27,7 @@
 }
 
 -(IBAction)onPlayLocalMovieButtonTap:(id)sender{
-	NSURL* url = [[NSBundle mainBundle] URLForResource:@"IMG_0451" withExtension:@"MOV"];
+	NSURL* url = [[NSBundle mainBundle] URLForResource:@"sample_iTunes" withExtension:@"mov"];
 	[_player_view playWithURL:url];
 }
 

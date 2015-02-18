@@ -4,6 +4,7 @@ PODS:
     - Expecta
     - FBSnapshotTestCase
   - FBSnapshotTestCase (1.5)
+  - FTGNotificationController (1.0)
   - NNMoviePlayerView (0.1.0)
   - Specta (0.3.2)
 
@@ -11,6 +12,7 @@ DEPENDENCIES:
   - Expecta
   - Expecta+Snapshots
   - FBSnapshotTestCase
+  - FTGNotificationController
   - NNMoviePlayerView (from `../`)
   - Specta
 
@@ -22,6 +24,7 @@ SPEC CHECKSUMS:
   Expecta: ee641011fe10aa1855d487b40e4976dac50ec342
   Expecta+Snapshots: 4a56b9411c6ed156987072e52c39de67d864015a
   FBSnapshotTestCase: e2914fbaabccea1dcc773d6a16b1c24540642488
+  FTGNotificationController: 568742e1ef4e5f2b9ae5e63477e2baee1c988a1d
   NNMoviePlayerView: 2130c4ef24a8cc19f29241c5af78b59e203634ff
   Specta: 698a58ffa5ec948327d3b92eab50ca58d7f4fbe8
 
