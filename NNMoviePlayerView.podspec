@@ -10,12 +10,9 @@
 Pod::Spec.new do |s|
   s.name             = "NNMoviePlayerView"
   s.version          = "0.1.0"
-  s.summary          = "A short description of NNMoviePlayerView."
+  s.summary          = "fuga"
   s.description      = <<-DESC
-                       An optional longer description of NNMoviePlayerView
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
+                       hoge
                        DESC
   s.homepage         = "https://github.com/noughts/NNMoviePlayerView"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
