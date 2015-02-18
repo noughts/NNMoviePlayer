@@ -10,6 +10,7 @@
 @import AVFoundation;
 #import <FTGNotificationController.h>
 #import <FBKVOController.h>
+#import <NBULog.h>
 
 @implementation NNMoviePlayerView{
 	FBKVOController* _kvoController;
@@ -54,16 +55,17 @@
 	
 	[_kvoController unobserveAll];
 	[_kvoController observe:_player keyPath:@"status" options:NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
-		if([_player status] == AVPlayerItemStatusReadyToPlay){
-			NSLog( @"再生開始" );
+		if( _player.status == AVPlayerItemStatusReadyToPlay){
+			NBULogVerbose( @"再生開始" );
 			[_player play];
-			return;
+		} else {
+			NBULogVerbose( @"%@", @(_player.status) );
 		}
 	}];
 	
 	[_notificationController unobserveAll];
 	[_notificationController observeNotificationName:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem queue:nil block:^(NSNotification *note, id observer) {
-		NSLog( @"再生終了" );
+		NBULogVerbose( @"再生終了" );
 		if( _autoRepeat ){
 			[self replay];
 		}
