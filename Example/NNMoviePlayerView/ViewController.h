@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <NNMoviePlayerView.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <NNMoviePlayerViewDelegate>
 
 @end

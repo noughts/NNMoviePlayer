@@ -46,6 +46,7 @@
 	[_notificationController unobserveAll];
 	[_notificationController observeNotificationName:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem queue:nil block:^(NSNotification *note, id observer) {
 		NSLog( @"再生終了" );
+		[_delegate moviePlayerDidFinishPlaying:self];
 	}];
 }
 

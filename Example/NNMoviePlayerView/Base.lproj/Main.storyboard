@@ -66,6 +66,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="_playLocal_btn" destination="Ykl-LE-QWL" id="JV8-Vk-CzU"/>
+                        <outlet property="_playRemote_btn" destination="AeB-Sb-8DO" id="mQ2-uN-TYB"/>
                         <outlet property="_player_view" destination="ebM-vd-Pb3" id="cYV-lS-bVh"/>
                     </connections>
                 </viewController>
