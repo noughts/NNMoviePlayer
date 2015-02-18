@@ -27,7 +27,22 @@
 	_kvoController = [FBKVOController controllerWithObserver:self];
 	_notificationController = [FTGNotificationController controllerWithObserver:self];
 	_player = [[AVPlayer alloc] init];
-	[(AVPlayerLayer*)self.layer setPlayer:_player];
+	
+	AVPlayerLayer* layer = (AVPlayerLayer*)self.layer;
+	[layer setPlayer:_player];
+	
+	/// 表示モード設定
+	switch (self.contentMode) {
+		case UIViewContentModeScaleAspectFill:
+			layer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+			break;
+		case UIViewContentModeScaleToFill:
+			layer.videoGravity = AVLayerVideoGravityResize;
+			break;
+		default:
+			layer.videoGravity = AVLayerVideoGravityResizeAspect;
+			break;
+	}
 }
 
 
