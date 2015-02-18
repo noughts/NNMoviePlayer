@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 koichi yamamoto. All rights reserved.
 //
 
-#import "NNViewController.h"
+#import "ViewController.h"
 
-@interface NNViewController ()
+@interface ViewController ()
 
 @end
 
-@implementation NNViewController
+@implementation ViewController
 
 - (void)viewDidLoad
 {

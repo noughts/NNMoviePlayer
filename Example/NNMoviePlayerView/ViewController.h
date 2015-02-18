@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NNViewController : UIViewController
+@interface ViewController : UIViewController
 
 @end
