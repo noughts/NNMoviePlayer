@@ -44,16 +44,9 @@
 			layer.videoGravity = AVLayerVideoGravityResizeAspect;
 			break;
 	}
-}
-
-
-
--(void)playWithURL:(NSURL*)url{
-	AVPlayerItem* item = [[AVPlayerItem alloc] initWithURL:url];
-	[_player replaceCurrentItemWithPlayerItem:item];
 	
 	
-	[_kvoController unobserveAll];
+	/// もろもろ監視開始
 	[_kvoController observe:_player keyPath:@"status" options:NSKeyValueObservingOptionNew block:^(id observer, AVPlayer* object, NSDictionary *change) {
 		if( _player.status == AVPlayerItemStatusReadyToPlay){
 			NBULogVerbose( @"再生開始 item=%@", object.currentItem );
@@ -62,8 +55,6 @@
 			NBULogVerbose( @"%@", @(_player.status) );
 		}
 	}];
-	
-	[_notificationController unobserveAll];
 	[_notificationController observeNotificationName:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem queue:nil block:^(NSNotification *note, id observer) {
 		AVPlayerItem* item = note.object;
 		NBULogVerbose( @"再生終了 item=%@", item );
@@ -72,6 +63,13 @@
 		}
 		[_delegate moviePlayerDidFinishPlaying:self];
 	}];
+}
+
+
+
+-(void)playWithURL:(NSURL*)url{
+	AVPlayerItem* item = [[AVPlayerItem alloc] initWithURL:url];
+	[_player replaceCurrentItemWithPlayerItem:item];
 }
 
 
