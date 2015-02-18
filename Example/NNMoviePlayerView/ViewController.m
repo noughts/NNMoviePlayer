@@ -31,6 +31,7 @@
 
 -(IBAction)onPlayLocalMovieButtonTap:(id)sender{
 	NSURL* url = [[NSBundle mainBundle] URLForResource:@"sample_mpeg4" withExtension:@"mov"];
+	_player_view.autoRepeat = YES;
 	[_player_view playWithURL:url];
 	[self onPlayButtonTap];
 }
