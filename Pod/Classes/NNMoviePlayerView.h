@@ -16,7 +16,7 @@
 
 /// 自動リピート
 @property BOOL autoRepeat;
-@property(nonatomic,assign) id<NNMoviePlayerViewDelegate> delegate;
+@property(nonatomic,weak) id<NNMoviePlayerViewDelegate> delegate;
 -(void)playWithURL:(NSURL*)url;
 -(void)replay;
 

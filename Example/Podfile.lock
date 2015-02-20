@@ -16,7 +16,7 @@ PODS:
   - KVOController (1.0.3)
   - NBULog (1.2.3):
     - CocoaLumberjack (>= 2.0.0-beta4)
-  - NNMoviePlayerView (0.1.0):
+  - NNMoviePlayerView (1.0.2):
     - FTGNotificationController
     - KVOController
     - NBULog
@@ -41,7 +41,7 @@ SPEC CHECKSUMS:
   FTGNotificationController: 568742e1ef4e5f2b9ae5e63477e2baee1c988a1d
   KVOController: b1139ef1fc373b6757e4b69493fedd7b56eb1272
   NBULog: 029ea974252f6d8e09de38985f67b9740098aa7f
-  NNMoviePlayerView: 90c2680159cf3a1295df993e568da1d2bc7a58f0
+  NNMoviePlayerView: 282ef114e69f893824c38297746a6cf514890b00
   Specta: 698a58ffa5ec948327d3b92eab50ca58d7f4fbe8
 
 COCOAPODS: 0.35.0
