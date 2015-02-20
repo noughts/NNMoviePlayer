@@ -23,6 +23,8 @@
 }
 
 
+
+
 -(void)awakeFromNib{
 	[super awakeFromNib];
 	_kvoController = [FBKVOController controllerWithObserver:self];
@@ -45,7 +47,6 @@
 			break;
 	}
 	
-	
 	/// もろもろ監視開始
 	[_kvoController observe:_player keyPath:@"status" options:NSKeyValueObservingOptionNew block:^(id observer, AVPlayer* object, NSDictionary *change) {
 		if( _player.status == AVPlayerItemStatusReadyToPlay){
@@ -63,6 +64,24 @@
 		}
 		[_delegate moviePlayerDidFinishPlaying:self];
 	}];
+}
+
+
+-(void)removeFromSuperview{
+	[_notificationController unobserveAll];
+	[_kvoController unobserveAll];
+	[super removeFromSuperview];
+	
+	/*
+	[_player pause];
+	AVPlayerLayer* layer = (AVPlayerLayer*)self.layer;
+	layer.player = nil;
+	_player = nil;
+	 */
+}
+
+-(void)dealloc{
+	NBULogVerbose( @"dealloc" );
 }
 
 
