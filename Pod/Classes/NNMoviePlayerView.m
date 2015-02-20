@@ -71,15 +71,17 @@
 	[_notificationController unobserveAll];
 	[_kvoController unobserveAll];
 	[super removeFromSuperview];
+	
+	/*
 	[_player pause];
 	AVPlayerLayer* layer = (AVPlayerLayer*)self.layer;
 	layer.player = nil;
 	_player = nil;
-	
+	 */
 }
 
 -(void)dealloc{
-	NSLog( @"dealloc" );
+	NBULogVerbose( @"dealloc" );
 }
 
 
