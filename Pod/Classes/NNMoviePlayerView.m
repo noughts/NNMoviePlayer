@@ -89,6 +89,7 @@
 -(void)playWithURL:(NSURL*)url{
 	AVPlayerItem* item = [[AVPlayerItem alloc] initWithURL:url];
 	[_player replaceCurrentItemWithPlayerItem:item];
+	[_player play];
 }
 
 
