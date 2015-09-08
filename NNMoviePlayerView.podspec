@@ -33,5 +33,5 @@ Pod::Spec.new do |s|
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'FTGNotificationController'
   s.dependency 'KVOController'
-  s.dependency "NBULog"
+  s.dependency "NBULogStub"
 end

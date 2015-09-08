@@ -18,6 +18,10 @@
 @property BOOL autoRepeat;
 @property(nonatomic,weak) id<NNMoviePlayerViewDelegate> delegate;
 -(void)playWithURL:(NSURL*)url;
+
+/// NSBundleから取得したpathを渡して再生
+-(void)playWithPath:(NSString*)path;
+
 -(void)replay;
 
 /// 一時停止

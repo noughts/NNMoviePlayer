@@ -8,9 +8,9 @@
 
 #import "NNMoviePlayerView.h"
 @import AVFoundation;
-#import <FTGNotificationController.h>
-#import <FBKVOController.h>
-#import <NBULog.h>
+#import "FTGNotificationController.h"
+#import "FBKVOController.h"
+#import "NBULogStub.h"
 
 @implementation NNMoviePlayerView{
 	FBKVOController* _kvoController;
@@ -85,6 +85,11 @@
 }
 
 
+/// NSBundleから取得したpathを渡して再生
+-(void)playWithPath:(NSString*)path{
+	NSURL* url = [NSURL fileURLWithPath:path];
+	[self playWithURL:url];
+}
 
 -(void)playWithURL:(NSURL*)url{
 	AVPlayerItem* item = [[AVPlayerItem alloc] initWithURL:url];
