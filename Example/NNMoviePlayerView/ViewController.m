@@ -12,6 +12,7 @@
 	__weak IBOutlet NNMoviePlayerView* _player_view;
 	__weak IBOutlet UIButton* _playLocal_btn;
 	__weak IBOutlet UIButton* _playRemote_btn;
+	__weak IBOutlet UIProgressView* _progress_view;
 }
 
 - (void)viewDidLoad{
@@ -59,7 +60,9 @@
 	}];
 }
 
-
+-(void)moviePlayer:(NNMoviePlayerView *)player playProgressChanged:(CGFloat)progress{
+	_progress_view.progress = progress;
+}
 
 
 

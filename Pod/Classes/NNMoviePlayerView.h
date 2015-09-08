@@ -44,4 +44,5 @@
 
 @protocol NNMoviePlayerViewDelegate <NSObject>
 -(void)moviePlayerDidFinishPlaying:(NNMoviePlayerView*)player;
+-(void)moviePlayer:(NNMoviePlayerView*)player playProgressChanged:(CGFloat)progress;
 @end

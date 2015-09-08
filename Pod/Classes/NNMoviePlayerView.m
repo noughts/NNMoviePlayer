@@ -16,6 +16,7 @@
 	FBKVOController* _kvoController;
 	FTGNotificationController* _notificationController;
 	AVPlayer        *_player;
+	id _playbackTimeObserver;
 }
 
 +(Class)layerClass{
@@ -64,7 +65,20 @@
 		}
 		[_delegate moviePlayerDidFinishPlaying:self];
 	}];
+	
+	/// 再生時間監視
+	__weak typeof(_player) __player = _player;
+	__weak typeof(self) _self = self;
+	CMTime interval = CMTimeMakeWithSeconds(0.1, NSEC_PER_SEC);
+	_playbackTimeObserver = [_player addPeriodicTimeObserverForInterval:interval queue:nil usingBlock:^(CMTime time) {
+		float duration = CMTimeGetSeconds(__player.currentItem.duration);
+		float currentTime = CMTimeGetSeconds(time);
+		float pct = currentTime / duration;
+		NBULogInfo(@"pct = %@", @(pct));
+		[_self.delegate moviePlayer:_self playProgressChanged:pct];
+	}];
 }
+
 
 
 -(void)removeFromSuperview{
