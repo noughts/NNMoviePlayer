@@ -169,6 +169,7 @@
         [_player.currentItem.asset cancelLoading];
         [_notificationController unobserveAll];
         [_kvoController unobserveAll];
+        [_player removeTimeObserver:_playbackTimeObserver];
         _player = [[AVPlayer alloc] init];
     } else {
         [self pause];
