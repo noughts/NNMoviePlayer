@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "NNMoviePlayerView"
-  s.version          = "1.1.2"
+  s.version          = "1.2.0"
   s.summary          = "fuga"
   s.description      = <<-DESC
                        hoge

@@ -25,7 +25,8 @@
 
 
 -(IBAction)onPlayRemoveMovieButtonTap:(id)sender{
-	NSURL* url = [NSURL URLWithString:@"https://s3-ap-northeast-1.amazonaws.com/blinkapp/video/DB07371F-12A9-43B7-82A4-4B1916E7708E.m4v"];
+    NSString* url_str = [NSString stringWithFormat:@"https://s3-ap-northeast-1.amazonaws.com/blinkapp/video/DB07371F-12A9-43B7-82A4-4B1916E7708E.m4v?rnd=%@", @(arc4random())];
+	NSURL* url = [NSURL URLWithString:url_str];
 	[_player_view playWithURL:url];
 	[self onPlayButtonTap];
 }
@@ -45,6 +46,7 @@
 
 
 -(void)onPlayButtonTap{
+    _player_view.alpha = 0.5;
 	[UIView animateWithDuration:0.25 animations:^{
 		_playLocal_btn.alpha = 0.25;
 		_playRemote_btn.alpha = 0.25;
@@ -52,6 +54,9 @@
 }
 
 
+-(void)moviePlayerDidStartPlaying:(NNMoviePlayerView *)player{
+    _player_view.alpha = 1;
+}
 
 -(void)moviePlayerDidFinishPlaying:(NNMoviePlayerView *)player{
 	[UIView animateWithDuration:0.25 animations:^{

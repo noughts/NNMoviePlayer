@@ -43,6 +43,7 @@
 #pragma mark - delegate定義
 
 @protocol NNMoviePlayerViewDelegate <NSObject>
+-(void)moviePlayerDidStartPlaying:(NNMoviePlayerView*)player;
 -(void)moviePlayerDidFinishPlaying:(NNMoviePlayerView*)player;
 -(void)moviePlayer:(NNMoviePlayerView*)player playProgressChanged:(CGFloat)progress;
 @end

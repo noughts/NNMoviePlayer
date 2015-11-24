@@ -52,7 +52,7 @@
 	[_kvoController observe:_player keyPath:@"status" options:NSKeyValueObservingOptionNew block:^(id observer, AVPlayer* object, NSDictionary *change) {
         switch (_player.status) {
             case AVPlayerStatusReadyToPlay:
-                NBULogVerbose( @"再生準備が完了したので再生を開始します item=%@", object.currentItem );
+                NBULogInfo( @"再生準備が完了したので再生を開始します item=%@", object.currentItem );
                 [_player play];
                 break;
             case AVPlayerStatusFailed:
@@ -94,9 +94,15 @@
 	CMTime interval = CMTimeMakeWithSeconds(1/30.0, NSEC_PER_SEC);
 	_playbackTimeObserver = [_player addPeriodicTimeObserverForInterval:interval queue:nil usingBlock:^(CMTime time) {
 		float duration = CMTimeGetSeconds(__player.currentItem.duration);
+        if( duration != duration ){/// nanチェックのトリック http://stackoverflow.com/questions/2109257/isnan-in-objective-c
+            return;
+        }
 		float currentTime = CMTimeGetSeconds(time);
 		float pct = currentTime / duration;
-//		NBULogInfo(@"pct = %@", @(pct));
+//		NBULogInfo(@"currentTime=%@ duration=%@ pct=%@", @(currentTime), @(duration), @(pct));
+        if( currentTime == 0 ){
+            [_self.delegate moviePlayerDidStartPlaying:_self];
+        }
 		[_self.delegate moviePlayer:_self playProgressChanged:pct];
 	}];
 }
@@ -128,9 +134,12 @@
 }
 
 -(void)playWithURL:(NSURL*)url{
-	AVPlayerItem* item = [[AVPlayerItem alloc] initWithURL:url];
-	[_player replaceCurrentItemWithPlayerItem:item];
-	[_player play];
+    NSOperationQueue* queue = [NSOperationQueue new];
+    [queue addOperationWithBlock:^{
+        AVPlayerItem* item = [[AVPlayerItem alloc] initWithURL:url];
+        [_player replaceCurrentItemWithPlayerItem:item];
+        [_player play];
+    }];
 }
 
 
