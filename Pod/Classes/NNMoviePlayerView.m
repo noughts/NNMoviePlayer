@@ -58,8 +58,8 @@
     [_kvoController observe:_player keyPath:@"status" options:NSKeyValueObservingOptionNew block:^(id observer, AVPlayer* object, NSDictionary *change) {
         switch (__player.status) {
             case AVPlayerStatusReadyToPlay:
-                NBULogInfo( @"再生準備が完了したので再生を開始します item=%@", object.currentItem );
-                [__player play];
+//                NBULogInfo( @"再生準備が完了したので再生を開始します item=%@", object.currentItem );
+//                [__player play];
                 break;
             case AVPlayerStatusFailed:
                 NBULogError(@"再生の準備に失敗した模様");
@@ -74,9 +74,14 @@
         if (timeRanges && [timeRanges count]) {
             CMTimeRange timerange = [[timeRanges objectAtIndex:0] CMTimeRangeValue];
             NBULogVerbose(@" . . . %.5f -> %.5f", CMTimeGetSeconds(timerange.start), CMTimeGetSeconds(CMTimeAdd(timerange.start, timerange.duration)));
-            if( _paused == NO){
-                [object play];/// ここで再生を再開しないと、回線が遅い時にとまったままになってしまいます
+            if( _paused ){
+                return;
             }
+            
+            /// UIスレッドブロック回避 https://stackoverflow.com/questions/25387213/ui-is-freezing-when-streaming-the-videos-from-an-internet-using-avplayer?rq=1
+            [object prerollAtRate:0 completionHandler:^(BOOL finished) {
+                [object play];/// ここで再生を再開しないと、回線が遅い時にとまったままになってしまいます
+            }];
         }
     }];
     [_kvoController observe:_player keyPath:@"rate" options:NSKeyValueObservingOptionNew block:^(id observer, AVPlayer* object, NSDictionary *change) {
@@ -154,7 +159,6 @@
     [asset loadValuesAsynchronouslyForKeys:keys completionHandler:^() {
         AVPlayerItem* item = [AVPlayerItem playerItemWithAsset:asset];
         [__player replaceCurrentItemWithPlayerItem:item];
-        [__player play];
     }];
 }
 
