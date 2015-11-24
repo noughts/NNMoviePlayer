@@ -140,6 +140,8 @@
 
 -(void)playWithURL:(NSURL*)url{
     _loading = YES;
+    
+    /// URLから直接AVPlayerItemを使わずに、AVURLAssetを経由するとUIスレッドのブロックを抑えられるらしいが効果は不明 http://stackoverflow.com/questions/7701212/avplayer-freezes-the-app-at-the-start-of-buffering-an-audio-stream
     AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:url options:nil];
     NSArray *keys = [NSArray arrayWithObject:@"playable"];
     [asset loadValuesAsynchronouslyForKeys:keys completionHandler:^() {
