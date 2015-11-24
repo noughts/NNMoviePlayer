@@ -50,11 +50,10 @@
 	
 	/// もろもろ監視開始
 	[_kvoController observe:_player keyPath:@"status" options:NSKeyValueObservingOptionNew block:^(id observer, AVPlayer* object, NSDictionary *change) {
-		if( _player.status == AVPlayerItemStatusReadyToPlay){
+        NBULogInfo( @"%@", @(_player.status) );
+        if( _player.status == AVPlayerItemStatusReadyToPlay){
 			NBULogVerbose( @"再生開始 item=%@", object.currentItem );
 			[_player play];
-		} else {
-			NBULogVerbose( @"%@", @(_player.status) );
 		}
 	}];
 	[_notificationController observeNotificationName:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem queue:nil block:^(NSNotification *note, id observer) {
@@ -107,6 +106,10 @@
 
 -(void)playWithURL:(NSURL*)url{
 	AVPlayerItem* item = [[AVPlayerItem alloc] initWithURL:url];
+    [_kvoController observe:item keyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
+        NBULogInfo(@"%@", change);
+    }];
+    
 	[_player replaceCurrentItemWithPlayerItem:item];
 	[_player play];
 }

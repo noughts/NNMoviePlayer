@@ -1,18 +1,18 @@
 PODS:
-  - CocoaLumberjack (2.0.1):
-    - CocoaLumberjack/Default (= 2.0.1)
-    - CocoaLumberjack/Extensions (= 2.0.1)
-  - CocoaLumberjack/Core (2.0.1)
-  - CocoaLumberjack/Default (2.0.1):
+  - CocoaLumberjack (2.2.0):
+    - CocoaLumberjack/Default (= 2.2.0)
+    - CocoaLumberjack/Extensions (= 2.2.0)
+  - CocoaLumberjack/Core (2.2.0)
+  - CocoaLumberjack/Default (2.2.0):
     - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.0.1):
+  - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
   - FTGNotificationController (1.0)
   - KVOController (1.0.3)
   - NBULog (1.2.4):
     - CocoaLumberjack (>= 2.0.0)
   - NBULogStub (0.1.2)
-  - NNMoviePlayerView (1.0.4):
+  - NNMoviePlayerView (1.1.0):
     - FTGNotificationController
     - KVOController
     - NBULogStub
@@ -26,11 +26,11 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
+  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   FTGNotificationController: 753218bec2d8f2627ef44308479e9548f23c2f47
   KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
   NBULog: 4003be6706b97a7e376ab4171c666ac7c2fbc2b2
   NBULogStub: 398fa3535e3b368d6f1cb3b32c2ac0cb81cf350c
-  NNMoviePlayerView: 446c2bc27ad3f7f3706da780a8dbef74189abf0d
+  NNMoviePlayerView: f5321c0661fa1bc0a3484705bf1d045a07f07646
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

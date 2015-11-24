@@ -25,7 +25,7 @@
 
 
 -(IBAction)onPlayRemoveMovieButtonTap:(id)sender{
-	NSURL* url = [NSURL URLWithString:@"http://casio.jp/file/dc/CIMG1226.mov"];
+	NSURL* url = [NSURL URLWithString:@"https://s3-ap-northeast-1.amazonaws.com/blinkapp/video/DB07371F-12A9-43B7-82A4-4B1916E7708E.m4v"];
 	[_player_view playWithURL:url];
 	[self onPlayButtonTap];
 }
