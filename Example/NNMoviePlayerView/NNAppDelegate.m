@@ -8,15 +8,23 @@
 
 #import "NNAppDelegate.h"
 #import <NBULog.h>
+#import <NNUIThreadBlockObserver.h>
 
-@implementation NNAppDelegate
+@implementation NNAppDelegate{
+    CFTimeInterval _lastTimeStamp;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     [NBULog setAppLogLevel:DDLogLevelAll];
+    
+    [[NNUIThreadBlockObserver sharedInstance] start];
+    
     return YES;
 }
+
+
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {

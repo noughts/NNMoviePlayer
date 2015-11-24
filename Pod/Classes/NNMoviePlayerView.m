@@ -140,9 +140,10 @@
 
 -(void)playWithURL:(NSURL*)url{
     _loading = YES;
-    NSOperationQueue* queue = [NSOperationQueue new];
-    [queue addOperationWithBlock:^{
-        AVPlayerItem* item = [[AVPlayerItem alloc] initWithURL:url];
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:url options:nil];
+    NSArray *keys = [NSArray arrayWithObject:@"playable"];
+    [asset loadValuesAsynchronouslyForKeys:keys completionHandler:^() {
+        AVPlayerItem* item = [AVPlayerItem playerItemWithAsset:asset];
         [_player replaceCurrentItemWithPlayerItem:item];
         [_player play];
     }];

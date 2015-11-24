@@ -4,6 +4,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 target 'NNMoviePlayerView', :exclusive => true do
   pod "NNMoviePlayerView", :path => "../"
   pod "NBULog"
+  pod "SVProgressHUD"
+  pod "NNUIThreadBlockObserver"
 end
 
 target 'Tests', :exclusive => true do

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <SVProgressHUD.h>
 
 @implementation ViewController{
 	__weak IBOutlet NNMoviePlayerView* _player_view;
