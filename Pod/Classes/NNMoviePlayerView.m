@@ -165,12 +165,8 @@
 -(void)stop{
     if( _loading ){
         _loading = NO;
-        [_player.currentItem cancelPendingSeeks];
-        [_player.currentItem.asset cancelLoading];
-        [_notificationController unobserveAll];
-        [_kvoController unobserveAll];
-        [_player removeTimeObserver:_playbackTimeObserver];
-        _player = [[AVPlayer alloc] init];
+        AVPlayerItem* emptyItem = [[AVPlayerItem alloc] initWithURL:[NSURL URLWithString:@""]];
+        [_player replaceCurrentItemWithPlayerItem:emptyItem];
     } else {
         [self pause];
     }
