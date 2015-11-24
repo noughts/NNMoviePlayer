@@ -122,15 +122,6 @@
 
 -(void)playWithURL:(NSURL*)url{
 	AVPlayerItem* item = [[AVPlayerItem alloc] initWithURL:url];
-//    [_kvoController observe:item keyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
-//        NSArray *timeRanges = (NSArray *)[change objectForKey:NSKeyValueChangeNewKey];
-//        if (timeRanges && [timeRanges count]) {
-//            CMTimeRange timerange = [[timeRanges objectAtIndex:0] CMTimeRangeValue];
-//            NBULogInfo(@" . . . %.5f -> %.5f", CMTimeGetSeconds(timerange.start), CMTimeGetSeconds(CMTimeAdd(timerange.start, timerange.duration)));
-//            [_player play];/// ここで再生を再開しないと、回線が遅い時にとまったままになってしまいます
-//        }
-//    }];
-    
 	[_player replaceCurrentItemWithPlayerItem:item];
 	[_player play];
 }
