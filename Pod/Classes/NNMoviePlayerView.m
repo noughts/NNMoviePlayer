@@ -16,7 +16,7 @@
 	FBKVOController* _kvoController;
 	FTGNotificationController* _notificationController;
 	AVPlayer        *_player;
-	id _playbackTimeObserver;
+	__weak id _playbackTimeObserver;
     BOOL _loading;
 }
 
@@ -94,7 +94,6 @@
 	}];
 	
 	/// 再生時間監視
-	
 	CMTime interval = CMTimeMakeWithSeconds(1/30.0, NSEC_PER_SEC);
 	_playbackTimeObserver = [_player addPeriodicTimeObserverForInterval:interval queue:nil usingBlock:^(CMTime time) {
 		float duration = CMTimeGetSeconds(__player.currentItem.duration);
@@ -115,6 +114,7 @@
 
 
 -(void)removeFromSuperview{
+    [_player removeTimeObserver:_playbackTimeObserver];
 	[_notificationController unobserveAll];
 	[_kvoController unobserveAll];
 	[super removeFromSuperview];
