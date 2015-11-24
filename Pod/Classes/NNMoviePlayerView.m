@@ -17,6 +17,7 @@
 	FTGNotificationController* _notificationController;
 	AVPlayer        *_player;
 	id _playbackTimeObserver;
+    BOOL _loading;
 }
 
 +(Class)layerClass{
@@ -28,9 +29,13 @@
 
 -(void)awakeFromNib{
 	[super awakeFromNib];
+    
 	_kvoController = [FBKVOController controllerWithObserver:self];
 	_notificationController = [FTGNotificationController controllerWithObserver:self];
 	_player = [[AVPlayer alloc] init];
+    
+    __weak typeof(self) _self = self;
+    __weak typeof(_player) __player = _player;
 	
 	AVPlayerLayer* layer = (AVPlayerLayer*)self.layer;
 	[layer setPlayer:_player];
@@ -50,10 +55,10 @@
 	
 	/// もろもろ監視開始
 	[_kvoController observe:_player keyPath:@"status" options:NSKeyValueObservingOptionNew block:^(id observer, AVPlayer* object, NSDictionary *change) {
-        switch (_player.status) {
+        switch (__player.status) {
             case AVPlayerStatusReadyToPlay:
                 NBULogInfo( @"再生準備が完了したので再生を開始します item=%@", object.currentItem );
-                [_player play];
+                [__player play];
                 break;
             case AVPlayerStatusFailed:
                 NBULogError(@"再生の準備に失敗した模様");
@@ -83,14 +88,13 @@
 		AVPlayerItem* item = note.object;
 		NBULogVerbose( @"再生終了 item=%@", item );
 		if( _autoRepeat ){
-			[self replay];
+			[_self replay];
 		}
-		[_delegate moviePlayerDidFinishPlaying:self];
+		[_delegate moviePlayerDidFinishPlaying:_self];
 	}];
 	
 	/// 再生時間監視
-	__weak typeof(_player) __player = _player;
-	__weak typeof(self) _self = self;
+	
 	CMTime interval = CMTimeMakeWithSeconds(1/30.0, NSEC_PER_SEC);
 	_playbackTimeObserver = [_player addPeriodicTimeObserverForInterval:interval queue:nil usingBlock:^(CMTime time) {
 		float duration = CMTimeGetSeconds(__player.currentItem.duration);
@@ -101,6 +105,7 @@
 		float pct = currentTime / duration;
 //		NBULogInfo(@"currentTime=%@ duration=%@ pct=%@", @(currentTime), @(duration), @(pct));
         if( currentTime == 0 ){
+            _loading = NO;
             [_self.delegate moviePlayerDidStartPlaying:_self];
         }
 		[_self.delegate moviePlayer:_self playProgressChanged:pct];
@@ -123,7 +128,7 @@
 }
 
 -(void)dealloc{
-	NBULogVerbose( @"dealloc" );
+	NBULogInfo( @"dealloc" );
 }
 
 
@@ -134,6 +139,7 @@
 }
 
 -(void)playWithURL:(NSURL*)url{
+    _loading = YES;
     NSOperationQueue* queue = [NSOperationQueue new];
     [queue addOperationWithBlock:^{
         AVPlayerItem* item = [[AVPlayerItem alloc] initWithURL:url];
@@ -155,6 +161,19 @@
 }
 
 
+/// ローディング中ならロードを止め、再生中なら再生を止める
+-(void)stop{
+    if( _loading ){
+        _loading = NO;
+        [_player.currentItem cancelPendingSeeks];
+        [_player.currentItem.asset cancelLoading];
+        [_notificationController unobserveAll];
+        [_kvoController unobserveAll];
+        _player = [[AVPlayer alloc] init];
+    } else {
+        [self pause];
+    }
+}
 
 
 @end

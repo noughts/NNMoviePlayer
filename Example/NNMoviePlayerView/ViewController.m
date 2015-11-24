@@ -54,6 +54,15 @@
 }
 
 
+-(IBAction)onStopButtonTap:(id)sender{
+    [_player_view stop];
+}
+
+
+
+#pragma mark - delegate
+
+
 -(void)moviePlayerDidStartPlaying:(NNMoviePlayerView *)player{
     _player_view.alpha = 1;
 }

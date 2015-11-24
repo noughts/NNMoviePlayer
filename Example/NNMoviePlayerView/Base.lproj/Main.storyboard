@@ -79,8 +79,8 @@
                                     <constraint firstAttribute="width" constant="300" id="isd-Gg-KVf"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ykl-LE-QWL">
-                                <rect key="frame" x="20" y="442" width="71" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ykl-LE-QWL">
+                                <rect key="frame" x="20" y="442" width="69" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Play Local">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -89,8 +89,8 @@
                                     <action selector="onPlayLocalMovieButtonTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kZu-Br-rAf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeB-Sb-8DO">
-                                <rect key="frame" x="213" y="442" width="87" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeB-Sb-8DO">
+                                <rect key="frame" x="214" y="442" width="86" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Play Remote">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -99,8 +99,8 @@
                                     <action selector="onPlayRemoveMovieButtonTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4ip-Fb-WyG"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1M-rq-IvV">
-                                <rect key="frame" x="136" y="530" width="48" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1M-rq-IvV">
+                                <rect key="frame" x="137" y="530" width="46" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Replay">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -113,13 +113,23 @@
                                 <rect key="frame" x="20" y="124" width="280" height="2"/>
                                 <animations/>
                             </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtV-no-XB7">
+                                <rect key="frame" x="268" y="480" width="32" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Stop"/>
+                                <connections>
+                                    <action selector="onStopButtonTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="bkt-QW-1C7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ZtV-no-XB7" firstAttribute="top" secondItem="AeB-Sb-8DO" secondAttribute="bottom" constant="8" symbolic="YES" id="3FT-xR-Wv2"/>
                             <constraint firstAttribute="trailing" secondItem="j7G-Hm-mxb" secondAttribute="trailing" constant="20" symbolic="YES" id="3zb-xw-3Oi"/>
                             <constraint firstItem="j7G-Hm-mxb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="5ZM-Mf-jdX"/>
                             <constraint firstAttribute="centerX" secondItem="ebM-vd-Pb3" secondAttribute="centerX" id="DWM-IH-qai"/>
+                            <constraint firstAttribute="trailing" secondItem="ZtV-no-XB7" secondAttribute="trailing" constant="20" symbolic="YES" id="H4M-84-g6T"/>
                             <constraint firstItem="AeB-Sb-8DO" firstAttribute="top" secondItem="ebM-vd-Pb3" secondAttribute="bottom" constant="8" symbolic="YES" id="XbB-KV-UYS"/>
                             <constraint firstAttribute="trailing" secondItem="AeB-Sb-8DO" secondAttribute="trailing" constant="20" symbolic="YES" id="YLO-xJ-bKv"/>
                             <constraint firstItem="Ykl-LE-QWL" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="Zdu-EE-fTm"/>
