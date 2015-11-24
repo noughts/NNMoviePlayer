@@ -56,6 +56,14 @@
 			[_player play];
 		}
 	}];
+    [_kvoController observe:_player keyPath:@"rate" options:NSKeyValueObservingOptionNew block:^(id observer, AVPlayer* object, NSDictionary *change) {
+        NBULogInfo(@"Player playback rate changed: %.5f", object.rate);
+        if (object.rate == 0.0) {
+            NBULogInfo(@" . . . PAUSED (or just started)");
+        }
+    }];
+    
+    
 	[_notificationController observeNotificationName:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem queue:nil block:^(NSNotification *note, id observer) {
 		AVPlayerItem* item = note.object;
 		NBULogVerbose( @"再生終了 item=%@", item );
@@ -107,7 +115,12 @@
 -(void)playWithURL:(NSURL*)url{
 	AVPlayerItem* item = [[AVPlayerItem alloc] initWithURL:url];
     [_kvoController observe:item keyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
-        NBULogInfo(@"%@", change);
+        NSArray *timeRanges = (NSArray *)[change objectForKey:NSKeyValueChangeNewKey];
+        if (timeRanges && [timeRanges count]) {
+            CMTimeRange timerange = [[timeRanges objectAtIndex:0] CMTimeRangeValue];
+            NBULogInfo(@" . . . %.5f -> %.5f", CMTimeGetSeconds(timerange.start), CMTimeGetSeconds(CMTimeAdd(timerange.start, timerange.duration)));
+            [_player play];/// ここで再生を再開しないと、回線が遅い時にとまったままになってしまいます
+        }
     }];
     
 	[_player replaceCurrentItemWithPlayerItem:item];
