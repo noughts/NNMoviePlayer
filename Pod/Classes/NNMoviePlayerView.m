@@ -58,10 +58,10 @@
     [_kvoController observe:_player keyPath:@"status" options:NSKeyValueObservingOptionNew block:^(id observer, AVPlayer* object, NSDictionary *change) {
         switch (__player.status) {
             case AVPlayerStatusReadyToPlay:{
-//                NBULogInfo( @"再生準備が完了したので再生を開始します item=%@", object.currentItem );
-//                [__player prerollAtRate:0 completionHandler:^(BOOL finished) {
-//                    [__player play];
-//                }];
+                NBULogInfo( @"再生準備が完了したので再生を開始します item=%@", object.currentItem );
+                [__player prerollAtRate:0 completionHandler:^(BOOL finished) {
+                    [__player play];
+                }];
             }break;
             case AVPlayerStatusFailed:
                 NBULogError(@"再生の準備に失敗した模様");
