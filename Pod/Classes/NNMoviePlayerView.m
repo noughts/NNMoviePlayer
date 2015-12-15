@@ -57,10 +57,12 @@
     /// もろもろ監視開始
     [_kvoController observe:_player keyPath:@"status" options:NSKeyValueObservingOptionNew block:^(id observer, AVPlayer* object, NSDictionary *change) {
         switch (__player.status) {
-            case AVPlayerStatusReadyToPlay:
+            case AVPlayerStatusReadyToPlay:{
 //                NBULogInfo( @"再生準備が完了したので再生を開始します item=%@", object.currentItem );
-//                [__player play];
-                break;
+//                [__player prerollAtRate:0 completionHandler:^(BOOL finished) {
+//                    [__player play];
+//                }];
+            }break;
             case AVPlayerStatusFailed:
                 NBULogError(@"再生の準備に失敗した模様");
                 break;
@@ -73,7 +75,7 @@
         NSArray *timeRanges = (NSArray *)[change objectForKey:NSKeyValueChangeNewKey];
         if (timeRanges && [timeRanges count]) {
             CMTimeRange timerange = [[timeRanges objectAtIndex:0] CMTimeRangeValue];
-            NBULogVerbose(@" . . . %.5f -> %.5f", CMTimeGetSeconds(timerange.start), CMTimeGetSeconds(CMTimeAdd(timerange.start, timerange.duration)));
+            NBULogInfo(@" . . . %.5f -> %.5f", CMTimeGetSeconds(timerange.start), CMTimeGetSeconds(CMTimeAdd(timerange.start, timerange.duration)));
             if( _paused ){
                 return;
             }
