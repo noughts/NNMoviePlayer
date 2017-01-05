@@ -8,13 +8,11 @@
 
 #import "NNMoviePlayerView.h"
 @import AVFoundation;
-#import "FTGNotificationController.h"
 #import "FBKVOController.h"
 #import "NBULogStub.h"
 
 @implementation NNMoviePlayerView{
     FBKVOController* _kvoController;
-    FTGNotificationController* _notificationController;
     AVPlayer        *_player;
     __weak id _playbackTimeObserver;
     BOOL _loading;
@@ -32,7 +30,6 @@
     [super awakeFromNib];
     
     _kvoController = [FBKVOController controllerWithObserver:self];
-    _notificationController = [FTGNotificationController controllerWithObserver:self];
     _player = [[AVPlayer alloc] init];
     
     __weak typeof(self) _self = self;
@@ -94,15 +91,15 @@
     }];
     
     
-    [_notificationController observeNotificationName:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem queue:nil block:^(NSNotification *note, id observer) {
-        AVPlayerItem* item = note.object;
-        NBULogVerbose( @"再生終了 item=%@", item );
-        if( _autoRepeat ){
-            [_self replay];
-        }
-        [_delegate moviePlayerDidFinishPlaying:_self];
-    }];
-    
+//    [_notificationController observeNotificationName:AVPlayerItemDidPlayToEndTimeNotification object:_player.currentItem queue:nil block:^(NSNotification *note, id observer) {
+//        AVPlayerItem* item = note.object;
+//        NBULogVerbose( @"再生終了 item=%@", item );
+//        if( _autoRepeat ){
+//            [_self replay];
+//        }
+//        [_delegate moviePlayerDidFinishPlaying:_self];
+//    }];
+	
     /// 再生時間監視
     CMTime interval = CMTimeMakeWithSeconds(1/30.0, NSEC_PER_SEC);
     _playbackTimeObserver = [_player addPeriodicTimeObserverForInterval:interval queue:nil usingBlock:^(CMTime time) {
@@ -125,7 +122,6 @@
 
 -(void)removeFromSuperview{
     [_player removeTimeObserver:_playbackTimeObserver];
-    [_notificationController unobserveAll];
     [_kvoController unobserveAll];
     [super removeFromSuperview];
     
